@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.className += ' js';</script>
 
 <script type="application/ld+json">
 {
@@ -130,6 +131,7 @@
   .hero-line a{border-bottom:1px solid rgba(247,242,238,.3); padding-bottom:1px}
   .hero-line a:hover{border-color:rgba(247,242,238,.85); color:#fff}
   .hero-line b{font-weight:500; color:rgba(247,242,238,.95)}
+  .hero-line span{display:inline-block; white-space:nowrap}
 
   /* ───────── 연락 창구 ───────── */
   .contact{padding:clamp(40px,6vw,64px) 0 0}
@@ -237,10 +239,11 @@
 
   .dock{display:none}
 
-  .rv{opacity:0; transform:translateY(16px); transition:opacity .85s cubic-bezier(.2,.7,.3,1), transform .85s cubic-bezier(.2,.7,.3,1)}
-  .rv.in{opacity:1; transform:none}
+  .rv{transition:opacity .85s cubic-bezier(.2,.7,.3,1), transform .85s cubic-bezier(.2,.7,.3,1)}
+  .js .rv{opacity:0; transform:translateY(16px)}
+  .js .rv.in{opacity:1; transform:none}
   @media (prefers-reduced-motion:reduce){
-    .rv{opacity:1 !important; transform:none !important}
+    .js .rv{opacity:1 !important; transform:none !important}
     html{scroll-behavior:auto}
     *{transition:none !important; animation:none !important}
   }
@@ -301,8 +304,8 @@
     </figure>
 
     <p class="hero-line">
-      <b>부산광역시 동래구 중앙대로1325번길 29, 4층</b> · 동래역 2번 출구 앞<br>
-      TEL <a href="tel:051-722-8063">051-722-8063</a> · FAX 051-980-0875
+      <b>부산광역시 동래구 중앙대로1325번길 29, 4층</b><br>
+      <span>동래역 2번 출구 앞</span> · <span>TEL <a href="tel:051-722-8063">051-722-8063</a></span> · <span>FAX 051-980-0875</span>
     </p>
   </div>
 </header>
@@ -477,9 +480,9 @@
 <script>
 (function(){
   var els = document.querySelectorAll('.rv');
+  function show(targets){ for(var i=0;i<targets.length;i++){ targets[i].classList.add('in'); } }
   if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    for(var i=0;i<els.length;i++){ els[i].classList.add('in'); }
-    return;
+    show(els); return;
   }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
@@ -487,6 +490,8 @@
     });
   }, {rootMargin:'0px 0px -6% 0px', threshold:0.06});
   els.forEach(function(el){ io.observe(el); });
+  // 안전장치: 어떤 이유로든 관찰이 발동하지 않으면 잠시 뒤 모두 보이도록
+  setTimeout(function(){ show(document.querySelectorAll('.rv:not(.in)')); }, 1600);
 })();
 </script>
 </body>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>우주변화의 원리 — 전권 정리</title>
+<meta name="description" content="한동석 『우주변화의 원리』 472쪽 전권을 장·절별로 정리한 읽기·검색 페이지. 목차 이동, 키워드·한자·쪽수 검색, 용어 사전.">
+<meta name="theme-color" content="#6b3f27">
+<style>
+:root{
+  --bg:#fbf8f2; --paper:#fffdf8; --ink:#23201c; --ink-soft:#5b5348; --line:#e3dccd;
+  --accent:#7a3f24; --accent-soft:#f0e4d6; --mark:#ffe9a8; --shadow:0 1px 2px rgba(60,40,20,.06),0 8px 24px rgba(60,40,20,.06);
+  --serif:"Noto Serif KR","Nanum Myeongjo","Apple SD Gothic Neo",-apple-system,BlinkMacSystemFont,"Malgun Gothic",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.85;font-size:17px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font-family:inherit}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:rgba(251,248,242,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd{max-width:1180px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:14px}
+.brand{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.brand b{font-size:16.5px;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand span{font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);letter-spacing:.04em}
+.menu{display:none;border:1px solid var(--line);background:var(--paper);border-radius:10px;width:40px;height:40px;font-size:18px;color:var(--ink);cursor:pointer}
+.searchwrap{position:relative;flex:1;max-width:520px;margin-left:auto}
+.searchwrap input{width:100%;padding:10px 38px 10px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font-family:var(--sans);font-size:15px;color:var(--ink);outline:none}
+.searchwrap input:focus{border-color:#c9ab8e;box-shadow:0 0 0 3px var(--accent-soft)}
+.searchwrap .ic{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#a4967f;font-size:15px}
+.hint{font-family:var(--sans);font-size:11.5px;color:#9a8d78;padding:0 18px 8px;max-width:1180px;margin:0 auto}
+
+/* layout */
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:268px minmax(0,1fr);gap:34px;padding:26px 18px 90px}
+nav.toc{position:sticky;top:78px;align-self:start;max-height:calc(100vh - 100px);overflow:auto;padding-right:6px}
+nav.toc h4{font-family:var(--sans);font-size:11px;letter-spacing:.14em;color:#9a8d78;margin:0 0 10px;font-weight:600}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc li a{display:flex;gap:8px;padding:6px 8px;border-radius:8px;font-size:14.5px;line-height:1.45;color:var(--ink-soft)}
+nav.toc li a .n{font-family:var(--sans);font-size:11px;color:#a4967f;min-width:26px;padding-top:3px}
+nav.toc li a .t{flex:1}
+nav.toc li a .pg{font-family:var(--sans);font-size:10.5px;color:#b6a992;padding-top:3px}
+nav.toc li a:hover{background:var(--accent-soft);text-decoration:none;color:var(--ink)}
+nav.toc li a.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+nav.toc .sub{margin:2px 0 8px 34px;border-left:1px solid var(--line);padding-left:8px}
+nav.toc .sub a{font-size:13px;padding:3px 6px;color:#7d7466}
+nav.toc .tools{border-top:1px solid var(--line);margin-top:14px;padding-top:12px;display:flex;flex-direction:column;gap:6px}
+nav.toc .tools a{font-family:var(--sans);font-size:13.5px;padding:6px 8px;border-radius:8px;color:var(--ink-soft)}
+nav.toc .tools a:hover{background:var(--accent-soft);text-decoration:none}
+
+main{min-width:0}
+article{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:34px 40px 44px;box-shadow:var(--shadow)}
+.crumb{font-family:var(--sans);font-size:12px;color:#9a8d78;letter-spacing:.05em;margin-bottom:8px}
+h1{font-size:27px;line-height:1.45;margin:0 0 6px;letter-spacing:-.01em;font-weight:700}
+.meta{font-family:var(--sans);font-size:12.5px;color:#9a8d78;display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.pill{background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:2px 10px;font-size:11.5px}
+h2{font-size:20.5px;margin:40px 0 14px;padding-top:18px;border-top:1px solid var(--line);line-height:1.5;scroll-margin-top:90px}
+h2:first-of-type{border-top:none;padding-top:0;margin-top:8px}
+h2 .pgch{font-family:var(--sans);font-size:11px;color:#a4967f;font-weight:400;margin-left:8px;white-space:nowrap}
+h3{font-size:16.5px;margin:26px 0 8px;color:var(--accent);line-height:1.5}
+h4{font-size:15px;margin:18px 0 6px}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 16px;padding-left:20px}
+li{margin:0 0 9px}
+strong{font-weight:700;color:#1b1815}
+blockquote{margin:16px 0;padding:12px 16px;background:#f7f1e6;border-left:3px solid #cbb391;border-radius:0 8px 8px 0;color:#4a4238;font-size:16px}
+blockquote p{margin:0 0 10px}
+blockquote p:last-child{margin:0}
+hr{border:none;border-top:1px solid var(--line);margin:26px 0}
+code{font-family:var(--sans);background:#f3ecdf;padding:1px 5px;border-radius:4px;font-size:.9em}
+mark{background:var(--mark);color:inherit;padding:0 2px;border-radius:3px}
+.pager{display:flex;justify-content:space-between;gap:14px;margin-top:34px;border-top:1px solid var(--line);padding-top:18px;font-family:var(--sans);font-size:13.5px}
+.pager a{max-width:48%;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 14px;line-height:1.4}
+.pager a:hover{border-color:#c9ab8e;text-decoration:none}
+.pager .r{text-align:right;margin-left:auto}
+
+/* home */
+.hero{padding:6px 0 4px}
+.hero h1{font-size:30px}
+.hero p{color:#4a4238}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:22px}
+.card{display:block;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.card:hover{border-color:#c9ab8e;text-decoration:none;transform:translateY(-1px)}
+.card .no{font-family:var(--sans);font-size:11px;color:#a4967f;letter-spacing:.08em}
+.card b{display:block;font-size:16px;margin:3px 0 4px;line-height:1.45;color:var(--ink)}
+.card small{font-family:var(--sans);font-size:11.5px;color:#9a8d78}
+.howto{background:#f7f1e6;border:1px solid #e8dcc7;border-radius:14px;padding:16px 20px;margin-top:22px;font-size:15px}
+.howto b{color:var(--accent)}
+
+/* terms */
+.tsearch{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);font-family:var(--sans);font-size:15px;margin:6px 0 18px}
+.tlist{display:grid;gap:2px}
+.titem{border-bottom:1px solid var(--line);padding:12px 2px}
+.titem .t{font-size:16px;font-weight:700}
+.titem .t span{font-weight:400;color:#8d8272;font-size:13.5px;margin-left:6px}
+.titem .d{font-size:15px;color:#3f3931;margin-top:4px}
+.titem .s{font-family:var(--sans);font-size:11.5px;color:#a4967f;margin-top:6px}
+
+/* results */
+.res{list-style:none;padding:0;margin:0}
+.res li{border-bottom:1px solid var(--line);padding:14px 2px}
+.res a.rt{font-size:16.5px;font-weight:700;display:block;margin-bottom:4px}
+.res .rp{font-family:var(--sans);font-size:11.5px;color:#a4967f;margin-bottom:6px}
+.res .sn{font-size:14.5px;color:#4a4238;line-height:1.75}
+.count{font-family:var(--sans);font-size:12.5px;color:#9a8d78;margin:0 0 10px}
+.empty{font-size:15px;color:#6b6257;background:#f7f1e6;padding:14px 16px;border-radius:10px}
+
+footer{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-family:var(--sans);font-size:12px;color:#a4967f;line-height:1.7}
+.overlay{display:none}
+
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr;gap:0;padding:16px 14px 80px}
+  nav.toc{position:fixed;top:0;left:0;bottom:0;width:82%;max-width:340px;background:var(--bg);z-index:60;padding:18px 16px 40px;max-height:none;transform:translateX(-102%);transition:transform .22s ease;box-shadow:6px 0 24px rgba(0,0,0,.12)}
+  nav.toc.open{transform:none}
+  .overlay.show{display:block;position:fixed;inset:0;background:rgba(30,22,14,.35);z-index:55}
+  .menu{display:block}
+  article{padding:22px 18px 30px;border-radius:14px}
+  h1{font-size:22px}
+  h2{font-size:18.5px}
+  body{font-size:16.5px;line-height:1.9}
+  .brand b{font-size:15px}
+  .hint{display:none}
+  .hd{gap:10px;padding:8px 12px}
+  .searchwrap input{font-size:16px}
+}
+@media print{
+  header,nav.toc,.pager,.menu,footer{display:none!important}
+  .wrap{display:block;padding:0}
+  article{border:none;box-shadow:none;padding:0}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <button class="menu" id="menuBtn" aria-label="목차 열기">☰</button>
+    <a class="brand" href="#/" style="color:inherit;text-decoration:none">
+      <b>우주변화의 원리</b>
+      <span>한동석 지음 · 472쪽 전권 정리</span>
+    </a>
+    <div class="searchwrap">
+      <input id="q" type="search" placeholder="키워드·한자·쪽수 검색 (예: 금화교역, 相火, 118)" autocomplete="off" aria-label="검색">
+      <span class="ic">⌕</span>
+    </div>
+  </div>
+</header>
+<div class="hint">쪽수로 찾으려면 숫자만 입력하세요. 예: <b>118</b> → 책 118쪽이 실린 절을 찾습니다.</div>
+
+<div class="overlay" id="ov"></div>
+<div class="wrap">
+  <nav class="toc" id="toc">
+    <h4>목차</h4>
+    <ol id="tocList"></ol>
+    <div class="tools">
+      <a href="#/">표지·전체 보기</a>
+      <a href="#/terms">용어 사전 <span id="tc" style="color:#b6a992"></span></a>
+      <a href="#/quotes">원문 인용 모음</a>
+    </div>
+  </nav>
+  <main id="main"></main>
+</div>
+<footer>
+  <p>한동석 『우주변화의 원리』(대원출판, 2001, ISBN 89-7261-055-0) 472쪽을 쪽수별로 읽고 장·절마다 정리한 페이지입니다. 인용은 원문을 옮기며 쪽수를 밝혔고, 해설은 정리한 사람의 것입니다.</p>
+  <p>본문은 스캔본에서 뽑은 글자를 대조해 읽었으므로 판독이 흐린 글자는 문맥에 맞게 바로잡았습니다.</p>
+</footer>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  var B = window.BOOK;
+  var C = B.chapters, T = B.terms;
+  var $ = function(s){return document.querySelector(s)};
+  var main = $('#main'), tocList = $('#tocList');
+  $('#tc').textContent = '(' + T.length + ')';
+
+  /* ---------- helpers ---------- */
+  function unwrap(r){ r = (r||'').replace(/\s/g,'').replace(/[–—]/g,'~').replace(/쪽/g,''); return r.split('~').filter(Boolean).map(Number).filter(function(n){return !isNaN(n)}) }
+  function chById(id){ for(var i=0;i<C.length;i++) if(C[i].id===id) return C[i]; return null }
+  function chIndex(id){ for(var i=0;i<C.length;i++) if(C[i].id===id) return i; return -1 }
+  function esc(s){ return s.replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]}) }
+  function toText(html){ var d=document.createElement('div'); d.innerHTML=html; return (d.textContent||'').replace(/\s+/g,' ') }
+  function numLabel(i){ return i===0?'서론':(i===10?'부록':'제'+i+'장') }
+
+  /* ---------- search index ---------- */
+  var IDX = [];
+  C.forEach(function(c, ci){
+    IDX.push({c:ci, s:-1, h:c.title, p:c.pages, x:toText(c.intro||'')});
+    c.sections.forEach(function(s, si){
+      IDX.push({c:ci, s:si, h:s.h, p:s.p||c.pages, x:toText(s.html)});
+    });
+  });
+  var TIDX = T.map(function(t){ return {t:t.t, h:t.h, d:t.d, c:t.c, p:t.p, x:t.t+' '+t.d} });
+
+  /* ---------- TOC ---------- */
+  function buildToc(){
+    var html = '';
+    C.forEach(function(c){
+      html += '<li><a href="#/ch/'+c.id+'" data-id="'+c.id+'"><span class="n">'+numLabel(C.indexOf(c))+'</span><span class="t">'+esc(c.short||c.title)+'</span><span class="pg">'+c.pages+'</span></a></li>';
+    });
+    tocList.innerHTML = html;
+  }
+  function markToc(id){
+    Array.prototype.forEach.call(tocList.querySelectorAll('a'), function(a){
+      a.classList.toggle('on', a.getAttribute('data-id')===id);
+    });
+  }
+  function closeDrawer(){ $('#toc').classList.remove('open'); $('#ov').classList.remove('show') }
+  $('#menuBtn').onclick = function(){ $('#toc').classList.add('open'); $('#ov').classList.add('show') };
+  $('#ov').onclick = closeDrawer;
+
+  /* ---------- views ---------- */
+  function viewHome(){
+    var h = '<article><div class="hero">'
+      + '<div class="crumb">한동석 · 대원출판 2001</div>'
+      + '<h1>우주변화의 원리 — 전권 정리</h1>'
+      + '<p>472쪽 전체를 서론과 아홉 장, 부록으로 나누어 장·절마다 정리했습니다. 각 절은 핵심 논지, 세부 요점, 쪽수를 붙인 원문 인용, 한자 용어 해설, 도표 해설 순으로 되어 있습니다.</p>'
+      + '<p style="font-size:15.5px;color:#6b6257">전편 법칙편은 서양철학 비판에서 출발해 오행·오운·육기·상수로 우주 변화의 법칙을 세우고, 후편 변화론은 토화작용·인신상화·금화교역에서 정신과 본체와 지축까지 밀고 나갑니다. 마지막 장은 그 모든 논의를 우화로 압축합니다.</p>'
+      + '</div>'
+      + '<div class="howto"><b>이렇게 찾아보세요.</b> 위 검색창에 낱말을 넣으면 정리 본문과 용어 사전에서 바로 찾습니다. 한자(예: 相火)도 되고, 숫자만 넣으면 그 쪽이 실린 절을 찾습니다(예: <b>214</b>). 목차는 왼쪽에서, 휴대폰에서는 ☰ 단추로 엽니다.</div>'
+      + '<div class="cards">';
+    C.forEach(function(c,i){
+      h += '<a class="card" href="#/ch/'+c.id+'"><span class="no">'+numLabel(i)+' · '+c.pages+'</span><b>'+esc(c.short||c.title)+'</b><small>'+c.sections.length+'개 절 · '+esc((c.title.split('—')[1]||'').trim())+'</small></a>';
+    });
+    h += '</div></article>';
+    main.innerHTML = h; markToc(null);
+  }
+
+  function viewChapter(id, anchor){
+    var c = chById(id); if(!c){ viewHome(); return }
+    var ci = chIndex(id);
+    var h = '<article><div class="crumb">'+(ci===0?'머리말과 서론':(ci===10?'부록':numLabel(ci)))+' · 원문 '+c.pages+'</div>';
+    h += '<h1>'+esc(c.title)+'</h1>';
+    h += '<div class="meta"><span class="pill">'+c.sections.length+'개 절</span><span>'+esc(c.pages)+'</span></div>';
+    h += c.intro || '';
+    c.sections.forEach(function(s, i){
+      h += '<h2 id="s'+i+'">'+esc(s.h)+(s.p?'<span class="pgch">'+esc(s.p)+'</span>':'')+'</h2>'+s.html;
+    });
+    // pager
+    var prev = C[ci-1], next = C[ci+1];
+    h += '<div class="pager">';
+    h += prev ? '<a href="#/ch/'+prev.id+'">← '+(numLabel(ci-1))+' '+esc(prev.short||prev.title)+'</a>' : '<a href="#/">← 표지</a>';
+    h += next ? '<a class="r" href="#/ch/'+next.id+'">'+(numLabel(ci+1))+' '+esc(next.short||next.title)+' →</a>' : '<a class="r" href="#/">표지로 →</a>';
+    h += '</div></article>';
+    main.innerHTML = h; markToc(id);
+    window.scrollTo(0,0);
+    if(anchor){ var el=document.getElementById(anchor); if(el){ el.scrollIntoView(); window.scrollBy(0,-80) } }
+  }
+
+  function viewTerms(){
+    var h = '<article><div class="crumb">찾아보기</div><h1>용어 사전</h1>'
+      + '<p>이 책에 나오는 핵심 한자와 개념 '+T.length+'개입니다. 장별 정리의 해설에서 모았습니다.</p>'
+      + '<input class="tsearch" id="tq" placeholder="용어·한자 검색 (예: 율려, 相火, 三極)" autocomplete="off">'
+      + '<div class="tlist" id="tlist"></div></article>';
+    main.innerHTML = h; markToc(null);
+    var tl = $('#tlist');
+    function draw(term){
+      var out = '', q = (term||'').trim().toLowerCase();
+      T.forEach(function(t){
+        if(q && (t.t+' '+t.d).toLowerCase().indexOf(q)<0) return;
+        out += '<div class="titem"><div class="t">'+esc(t.t)+'</div><div class="d">'+esc(t.d)+'</div><div class="s">'+esc(t.c)+' · '+esc(t.p)+'</div></div>';
+      });
+      tl.innerHTML = out || '<div class="empty">해당하는 용어가 없습니다. 다른 낱말로 찾아보세요.</div>';
+    }
+    draw('');
+    var tq = $('#tq');
+    tq.addEventListener('input', function(){ draw(tq.value) });
+  }
+
+  function viewQuotes(){
+    var h = '<article><div class="crumb">찾아보기</div><h1>원문 인용 모음</h1>'
+      + '<p>장별 정리에 실린 원문 인용을 모았습니다. 쪽수는 원문 책쪽수입니다. 인용문은 스캔본에서 뽑은 글자를 문맥에 맞게 바로잡았습니다.</p>';
+    var n = 0;
+    C.forEach(function(c, ci){
+      var found = [];
+      c.sections.forEach(function(s, si){
+        var d = document.createElement('div'); d.innerHTML = s.html;
+        var bq = d.querySelectorAll('blockquote');
+        for(var i=0;i<bq.length;i++) found.push({h:s.h, html:bq[i].innerHTML, s:si});
+      });
+      if(!found.length) return;
+      h += '<h2>'+numLabel(ci)+' · '+esc(c.short||c.title)+'<span class="pgch">'+esc(c.pages)+'</span></h2>';
+      found.forEach(function(f){ n++; h += '<blockquote><a href="#/ch/'+c.id+'/s'+f.s+'">'+esc(f.h)+'</a><div style="margin-top:8px">'+f.html+'</div></blockquote>' });
+    });
+    h += '</article>';
+    main.innerHTML = h; markToc(null);
+  }
+
+  /* ---------- search ---------- */
+  function hl(text, q){
+    if(!q) return esc(text);
+    var t = esc(text), qq = esc(q);
+    try{ return t.replace(new RegExp(qq.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'), function(m){return '<mark>'+m+'</mark>'}) }catch(e){ return t }
+  }
+  function snippet(text, q){
+    if(!q) return esc(text.slice(0,150));
+    var i = text.toLowerCase().indexOf(q.toLowerCase());
+    if(i<0) return esc(text.slice(0,150));
+    var a = Math.max(0, i-70), b = Math.min(text.length, i+q.length+110);
+    return (a>0?'… ':'') + hl(text.slice(a,b), q) + (b<text.length?' …':'');
+  }
+  function inRange(pages, n){
+    var r = unwrap(pages);
+    if(!r.length) return false;
+    var lo = r[0], hi = r.length>1?r[1]:r[0];
+    return n>=lo && n<=hi;
+  }
+  function doSearch(q0){
+    var q = (q0||'').trim();
+    if(!q){ viewHome(); return }
+    var digits = /^\d{1,3}$/.test(q) ? parseInt(q,10) : null;
+    var h = '<article><div class="crumb">검색</div><h1>‘'+esc(q)+'’</h1>';
+    var results = [];
+
+    if(digits!==null){
+      h += '<p class="count">책 '+digits+'쪽을 찾습니다.</p>';
+      var hit = [];
+      C.forEach(function(c, ci){
+        if(!inRange(c.pages, digits)) return;
+        c.sections.forEach(function(s, si){
+          var p = s.p || c.pages;
+          if(inRange(p, digits) || (unwrap(p).length>1 && digits>=unwrap(p)[0] && digits<=unwrap(p)[1])) hit.push({c:ci,s:si,h:s.h,p:p,x:toText(s.html)});
+        });
+      });
+      if(!hit.length){
+        h += '<div class="empty">'+digits+'쪽이 어느 절에 들어 있는지 정리본에서 표시하지 못했습니다. 절 제목 옆 쪽수 표기를 보고 가까운 절을 찾아보세요.</div>';
+      } else {
+        h += '<ul class="res">';
+        hit.forEach(function(r){
+          h += '<li><a class="rt" href="#/ch/'+C[r.c].id+'/s'+r.s+'">'+numLabel(r.c)+' · '+esc(r.h)+'</a><div class="rp">'+esc(C[r.c].title)+' · '+esc(r.p)+'</div><div class="sn">'+esc(r.x.slice(0,180))+'…</div></li>';
+        });
+        h += '</ul>';
+      }
+      h += '</article>';
+      main.innerHTML = h; markToc(null); return;
+    }
+
+    var ql = q.toLowerCase();
+    IDX.forEach(function(r){
+      var xl = r.x.toLowerCase(), pos = xl.indexOf(ql), inH = r.h.toLowerCase().indexOf(ql);
+      if(pos<0 && inH<0) return;
+      var score = (inH>=0?1000:0) + (r.s<0?50:0) - Math.min(200, Math.floor((pos<0?9999:pos)/12));
+      results.push({r:r, score:score});
+    });
+    results.sort(function(a,b){ return b.score-a.score });
+
+    var tr = TIDX.filter(function(t){ return t.x.toLowerCase().indexOf(ql)>=0 });
+
+    if(!results.length && !tr.length){
+      h += '<div class="empty">‘'+esc(q)+'’는 찾지 못했습니다. 다른 낱말이나 한자로 넣어 보세요. 숫자만 넣으면 그 쪽을 찾습니다.</div>';
+    } else {
+      h += '<p class="count">정리 본문 '+results.length+'곳, 용어 '+tr.length+'개</p>';
+      if(tr.length){
+        h += '<h2>용어 사전</h2><div class="tlist">';
+        tr.slice(0,12).forEach(function(t){
+          h += '<div class="titem"><div class="t">'+hl(t.t,q)+'</div><div class="d">'+hl(t.d,q)+'</div><div class="s">'+esc(t.c)+' · '+esc(t.p)+'</div></div>';
+        });
+        h += '</div>';
+      }
+      if(results.length){
+        h += '<h2>본문</h2><ul class="res">';
+        results.slice(0,40).forEach(function(o){
+          var r = o.r;
+          h += '<li><a class="rt" href="#/ch/'+C[r.c].id+(r.s>=0?'/s'+r.s:'')+'">'+numLabel(r.c)+' · '+hl(r.h,q)+'</a><div class="rp">'+esc(C[r.c].title)+' · '+esc(r.p)+'</div><div class="sn">'+snippet(r.x,q)+'</div></li>';
+        });
+        h += '</ul>';
+        if(results.length>40) h += '<p class="count">앞의 40곳만 보여 줍니다. 낱말을 더 좁혀 보세요.</p>';
+      }
+    }
+    h += '</article>';
+    main.innerHTML = h; markToc(null);
+  }
+
+  /* ---------- router ---------- */
+  function route(){
+    var hash = location.hash.replace(/^#/,'') || '/';
+    var mCh = hash.match(/^\/ch\/(\w+)(?:\/(s\d+))?/);
+    if(mCh){ viewChapter(mCh[1], mCh[2]); return }
+    if(/^\/terms/.test(hash)){ viewTerms(); return }
+    if(/^\/quotes/.test(hash)){ viewQuotes(); return }
+    var mQ = hash.match(/^\/q\/(.*)$/);
+    if(mQ){ var q = decodeURIComponent(mQ[1]); $('#q').value = q; doSearch(q); return }
+    viewHome();
+  }
+
+  var timer;
+  $('#q').addEventListener('input', function(){
+    var v = this.value.trim();
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      if(v){ location.hash = '#/q/' + encodeURIComponent(v) }
+      else { location.hash = '#/' }
+    }, 220);
+  });
+  $('#q').addEventListener('keydown', function(e){ if(e.key==='Enter'){ clearTimeout(timer); var v=this.value.trim(); location.hash = v? '#/q/'+encodeURIComponent(v) : '#/' } });
+
+  window.addEventListener('hashchange', function(){ closeDrawer(); route() });
+  buildToc(); route();
+})();
+</script>
+</body>
+</html>

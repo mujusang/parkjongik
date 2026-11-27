@@ -167,7 +167,7 @@ footer{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-family:var(--sans
   <p>본문은 스캔본에서 뽑은 글자를 대조해 읽었으므로 판독이 흐린 글자는 문맥에 맞게 바로잡았습니다.</p>
 </footer>
 
-<script src="data.js?v=3"></script>
+<script src="data.js?v=4"></script>
 <script>
 (function(){
   var B = window.BOOK;
@@ -236,7 +236,8 @@ footer{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-family:var(--sans
     h += '<div class="meta"><span class="pill">'+c.sections.length+'개 절</span><span>'+esc(c.pages)+'</span></div>';
     h += c.intro || '';
     c.sections.forEach(function(s, i){
-      h += '<h2 id="s'+i+'">'+esc(s.h)+(s.p?'<span class="pgch">'+esc(s.p)+'</span>':'')+'</h2>'+s.html;
+      var chip = (s.p && s.p !== c.pages) ? '<span class="pgch">'+esc(s.p)+'</span>' : '';
+      h += '<h2 id="s'+i+'">'+esc(s.h)+chip+'</h2>'+s.html;
     });
     // pager
     var prev = C[ci-1], next = C[ci+1];

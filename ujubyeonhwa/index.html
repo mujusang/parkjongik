@@ -316,22 +316,32 @@ footer{max-width:1180px;margin:0 auto;padding:0 18px 40px;font-family:var(--sans
 
     if(digits!==null){
       h += '<p class="count">책 '+digits+'쪽을 찾습니다.</p>';
-      var hit = [];
+      var chHits = [], subHits = [];
       C.forEach(function(c, ci){
         if(!inRange(c.pages, digits)) return;
+        chHits.push(ci);
         c.sections.forEach(function(s, si){
-          var p = s.p || c.pages;
-          if(inRange(p, digits) || (unwrap(p).length>1 && digits>=unwrap(p)[0] && digits<=unwrap(p)[1])) hit.push({c:ci,s:si,h:s.h,p:p,x:toText(s.html)});
+          (s.subs||[]).forEach(function(sb){
+            if(digits>=sb.a && digits<=sb.b) subHits.push({c:ci,s:si,h:sb.h,a:sb.a,b:sb.b});
+          });
         });
       });
-      if(!hit.length){
-        h += '<div class="empty">'+digits+'쪽이 어느 절에 들어 있는지 정리본에서 표시하지 못했습니다. 절 제목 옆 쪽수 표기를 보고 가까운 절을 찾아보세요.</div>';
+      if(!chHits.length){
+        h += '<div class="empty">'+digits+'쪽은 이 책의 정리 범위(10~472쪽)에 없습니다. 10에서 472 사이의 숫자를 넣어 보세요.</div>';
       } else {
-        h += '<ul class="res">';
-        hit.forEach(function(r){
-          h += '<li><a class="rt" href="#/ch/'+C[r.c].id+'/s'+r.s+'">'+numLabel(r.c)+' · '+esc(r.h)+'</a><div class="rp">'+esc(C[r.c].title)+' · '+esc(r.p)+'</div><div class="sn">'+esc(r.x.slice(0,180))+'…</div></li>';
+        h += '<div class="tlist">';
+        chHits.forEach(function(ci){
+          var c = C[ci];
+          h += '<div class="titem"><div class="t"><a href="#/ch/'+c.id+'">'+numLabel(ci)+' · '+esc(c.short||c.title)+'</a></div><div class="d">이 장은 원문 '+esc(c.pages)+'에 걸쳐 있습니다.</div></div>';
         });
-        h += '</ul>';
+        h += '</div>';
+        if(subHits.length){
+          h += '<h2>이 쪽이 들어 있는 절</h2><ul class="res">';
+          subHits.forEach(function(r){
+            h += '<li><a class="rt" href="#/ch/'+C[r.c].id+'/s'+r.s+'">'+esc(r.h)+'</a><div class="rp">'+numLabel(r.c)+' · '+esc(C[r.c].short||C[r.c].title)+' · '+r.a+'~'+r.b+'쪽</div></li>';
+          });
+          h += '</ul>';
+        }
       }
       h += '</article>';
       main.innerHTML = h; markToc(null); return;
